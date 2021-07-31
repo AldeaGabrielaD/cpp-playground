@@ -3,8 +3,26 @@
 bool isArmstrongNumber(int number)
 {
 	// TODO: implement some functionality to see if this number is an armstrong number
+	int sum_of_cubes = 0, digit, aux;
+	aux = number;
 
-	return false;
+	while (number > 0)
+	{
+		digit = number % 10;
+		sum_of_cubes = sum_of_cubes + digit * digit * digit;
+		number /= 10;
+	}
+
+	if (aux == sum_of_cubes)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+	
 }
 
 void printIsArmstrong(int number)
@@ -52,7 +70,17 @@ int main(int argc, char *argv[])
 	std::string argumentAsString = argv[1];
 	
 	// TODO: read number / cast to integer
+	 readNumber = atoi(argv[1]);
 
-	printIsArmstrong(readNumber);
+	if (readNumber != NULL)
+	{
+		printIsArmstrong(readNumber);
+	}
+	else
+	{
+		printf("Undefined output (do whatever).\n");
+	}
+
+	
 	return 0;
 }
