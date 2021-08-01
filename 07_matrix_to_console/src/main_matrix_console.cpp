@@ -13,16 +13,28 @@ private:
 
 	// TODO: store the data
 	// hints: you can use std::string, std::vectors + string, char**, vector<vector<char>>, etc
+	char** matrix;
 public:
 	Matrix(size_t numColumnsX, size_t numLinesY)
 		// TODO: add functionality
 	{
+		column_count = numColumnsX;
+		line_count = numLinesY;
+
 		// TODO: add functionality
+		this->matrix = new char* [line_count];
+
+		for (int i = 0; i < line_count; i++) {
+			matrix[i] = new char[column_count];
+		}
+
 	}
 
 	// Set an entire line
 	void setLine(size_t line_number, const std::string& data)
 	{
+		for (int y = 0; y < this->column_count; y++)
+			this->matrix[line_number][y] = data[y];
 	}
 
 	//OPTIONAL
@@ -55,12 +67,24 @@ public:
 	void setCellXY(size_t x, size_t y, char cell_content)
 	{
 		// TODO: add functionality
+		this->matrix[y][x] = cell_content;
 	}
 
 	void print()
 	{
 		// print all lines and columns
 		// TODO: add functionality
+
+		std::cout << std::endl<<std::endl;
+
+		for (int x = 0;  x < this->line_count; x++)
+		{
+			for (int y = 0; y < this->column_count; y++)
+			{
+				std::cout << this->matrix[x][y] << " ";
+			}
+			std::cout << std::endl;
+		}
 	}
 };
 
@@ -126,6 +150,6 @@ X-----X----X-----XX-
 */
 
 	// This should silently fail (not trigger an error): cell Y=11 invalid due to limited height.
-	matrix.setCellXY(3, 11, 'O');
+	//matrix.setCellXY(3, 11, 'O');
 	return 0;
 }
